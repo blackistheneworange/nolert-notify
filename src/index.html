@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css"/>
+    <title>NOLert</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-family: Roboto, sans-serif, serif;
+        }
+        body{
+            height:100vh;
+            width:100vw;
+        }
+        main{
+            height:100%;
+            width:100%;
+        }
+        main>form{
+            height:100%;
+            width:100%;
+            display:flex;
+            flex-direction: column;
+            align-items:center;
+            justify-content:center;
+        }
+        main>form>*{
+            margin:12px;
+            padding:12px;
+        }
+        main>form textarea{
+            width:90%;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <form id="demoGeneratorForm">
+            <h1>NOLert</h1>
+            <textarea placeholder="Enter custom message to be displayed" name="message"></textarea>
+            <div>
+                <label for="positionSelect">Alert Position</label>
+                <select name="position" id="positionSelect">
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                    <option value="top-left">Top Left</option>
+                    <option value="top-right">Top Right</option>
+                    <option value="bottom-left" selected>Bottom Left</option>
+                    <option value="bottom-right">Bottom Right</option>
+                </select>
+            </div>
+            <div>
+                <label for="typeSelect">Alert Type</label>
+                <select name="type" id="typeSelect">
+                    <option value="info" selected>Info</option>
+                    <option value="success">Success</option>
+                    <option value="danger">Danger</option>
+                    <option value="warning">Warning</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="iconTypeSelect">Icon Type</label>
+                <select name="iconType" id="iconTypeSelect">
+                    <option value="" selected>Default</option>
+                    <option value="info">Info</option>
+                    <option value="success">Success</option>
+                    <option value="danger">Danger</option>
+                    <option value="warning">Warning</option>
+                </select>
+            </div>
+            <div>
+                <label for="displaySelect">Display</label>
+                <select name="display" id="displaySelect">
+                    <option value="solo" selected>Solo</option>
+                    <option value="stack">Stack</option>
+                </select>
+            </div>
+            <div>
+                <label for="closeButton">Close Button</label>
+                <input type="checkbox" id="closeButton" name="closeButton" checked="true"/>
+            </div>
+            <div>
+                <label for="autoClose">Auto Close</label>
+                <input type="checkbox" id="autoClose" name="autoClose" checked="true"/>
+            </div>
+            <div>
+                <label for="noIcon">No Icon</label>
+                <input type="checkbox" id="noIcon" name="noIcon"/>
+            </div>
+            <button>Trigger</button>
+        </form>
+    </main>
+    <!-- <script src="../dist/script.min.js"></script> -->
+    <script type="module">
+
+        import notify from "../index.js";
+
+        const demoGeneratorForm = document.getElementById("demoGeneratorForm");
+        demoGeneratorForm.addEventListener("submit", handleTriggerAlert);
+
+        function handleTriggerAlert(el){
+            el.preventDefault();
+            const values = {
+                type: el.target.type.value,
+                position: el.target.position.value,
+                message: el.target.message.value || "Woah! Alert triggered successfully!",
+                closeButton: el.target.closeButton.checked,
+                autoClose: el.target.autoClose.checked,
+                iconType: el.target.iconType.value,
+                noIcon: el.target.noIcon.checked,
+                display: el.target.display.value
+            }
+
+            notify.setConfig({
+                display:values.display,
+                // type: values.type, 
+                // position: values.position, 
+                // autoClose: values.autoClose, 
+                // closeButton:values.closeButton, 
+                // closeIn:4000,
+                // zIndex:500,
+                // iconType:values.iconType,
+                // noIcon:values.noIcon
+            });
+            notify.trigger({
+                message:values.message, 
+                type: values.type, 
+                position: values.position, 
+                autoClose: values.autoClose, 
+                closeButton:values.closeButton, 
+                closeIn:3000,
+                iconType:values.iconType,
+                noIcon:values.noIcon
+            });
+        }
+    </script>
+</body>
+</html>
