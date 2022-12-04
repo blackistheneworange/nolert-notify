@@ -1,4 +1,4 @@
-# @tailwindcss/forms
+# @nolert/notify
 
 A lightweight utility library for creating notifications for the web developed using vanilla Javascript and plain CSS.
 
