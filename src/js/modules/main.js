@@ -57,6 +57,10 @@ function nolertCreateAlertElement({id, message, position, type, closeIn, maxWidt
     if(maxWidth){
         containerEl.style.maxWidth=maxWidth;
     }
+    
+    if(cssOverrides.zIndex){
+        containerEl.style.zIndex = cssOverrides.zIndex;
+    }
 
     nolertSetPosition(containerEl, position, closeIn);
 
@@ -65,6 +69,7 @@ function nolertCreateAlertElement({id, message, position, type, closeIn, maxWidt
     alertEl.classList.add(type);
     
     for(const cssOverridesKey of Object.keys(cssOverrides)){
+        if(cssOverridesKey === "zIndex")continue;
         alertEl.style[cssOverridesKey] = cssOverrides[cssOverridesKey];
     }
     
