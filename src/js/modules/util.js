@@ -54,11 +54,13 @@ function nolertSetPosition(containerEl, position, closeIn){
             //timeout for appear animation
             setTimeout(()=>{
                 containerEl.style.opacity=1;
-                containerEl.style.right = `${nolertCornerSpacing}${nolertCornerSpacingUnit}`;
-                containerEl.style.transform = "translateX(-16px)";
+                containerEl.style.right=0;
+                // containerEl.style.right = `${nolertCornerSpacing}${nolertCornerSpacingUnit}`;
+                containerEl.style.transform = "translateX(-24px)";
             },100);
             setTimeout(()=>{
-                containerEl.style.transform = "translateX(0)";
+                // containerEl.style.transform = "translateX(0)";
+                containerEl.style.transform = "translateX(-8px)";
             },500)
 
             //timeout for disappear animation
@@ -76,11 +78,12 @@ function nolertSetPosition(containerEl, position, closeIn){
             //timeout for appear animation
             setTimeout(()=>{
                 containerEl.style.opacity=1;
-                containerEl.style.left = `${nolertCornerSpacing}${nolertCornerSpacingUnit}`;
-                containerEl.style.transform = "translateX(16px)";
+                containerEl.style.left = 0;
+                // containerEl.style.left = `${nolertCornerSpacing}${nolertCornerSpacingUnit}`;
+                containerEl.style.transform = "translateX(24px)";
             },100);
             setTimeout(()=>{
-                containerEl.style.transform = "translateX(0)";
+                containerEl.style.transform = "translateX(8px)";
             },500)
 
             //timeout for disappear animation
@@ -121,11 +124,12 @@ function nolertSetPosition(containerEl, position, closeIn){
             //timeout for appear animation
             setTimeout(()=>{
                 containerEl.style.opacity=1;
-                containerEl.style.right = `${nolertCornerSpacing}${nolertCornerSpacingUnit}`;
-                containerEl.style.transform = "translateX(-16px)";
+                // containerEl.style.right = `${nolertCornerSpacing}${nolertCornerSpacingUnit}`;
+                containerEl.style.right = 0;
+                containerEl.style.transform = "translateX(-24px)";
             },100);
             setTimeout(()=>{
-                containerEl.style.transform = "translateX(0)";
+                containerEl.style.transform = "translateX(-8px)";
             },500)
 
             //timeout for disappear animation
@@ -143,11 +147,12 @@ function nolertSetPosition(containerEl, position, closeIn){
             //timeout for appear animation
                 setTimeout(()=>{
                     containerEl.style.opacity=1;
-                    containerEl.style.left = `${nolertCornerSpacing}${nolertCornerSpacingUnit}`;
-                    containerEl.style.transform = "translateX(16px)";
+                    containerEl.style.left = 0;
+                    // containerEl.style.left = `${nolertCornerSpacing}${nolertCornerSpacingUnit}`;
+                    containerEl.style.transform = "translateX(24px)";
                 },100);
                 setTimeout(()=>{
-                    containerEl.style.transform = "translateX(0)";
+                    containerEl.style.transform = "translateX(8px)";
                 },500)
 
             //timeout for disappear animation

@@ -1,4 +1,4 @@
-import {trigger as triggerNotification} from "./modules/main.js";
+import {trigger} from "./modules/main.js";
 
 class NolertNotify{
 
@@ -12,7 +12,10 @@ class NolertNotify{
         autoClose: true,
         closeIn: 4000,
         noIcon: false,
-        zIndex: 100
+        cssOverrides:{
+            zIndex: 100,
+            borderRadius: "4px"
+        }
     }
 
     NolertNotify(){}
@@ -22,15 +25,15 @@ class NolertNotify{
             type: (type || this.config.type), 
             iconType: (iconType || this.config.iconType), 
             closeButton: ((typeof closeButton === 'boolean') ? closeButton : this.config.closeButton), 
-            closeIn: (closeIn || this.config.closeIn), 
+            closeIn: ((closeIn && typeof closeIn === "number" && closeIn>999) ? closeIn : this.config.closeIn), 
             autoClose: ((typeof autoClose === 'boolean') ? autoClose : this.config.autoClose),  
             noIcon: ((typeof noIcon === 'boolean') ? noIcon : this.config.noIcon), 
             message: message, 
             position: (position || this.config.position),
-            zIndex: this.config.zIndex,
+            cssOverrides: {...this.config.cssOverrides},
             display: this.config.display
         };
-        triggerNotification({
+        trigger({
             ...props
         });
     }
@@ -48,30 +51,50 @@ class NolertNotify{
                         if(this.screenPositions.includes(values[key])){
                             this.config[key] = values[key];
                         }
+                        break;
                     case "closeButton":
                         if(typeof values[key] === 'boolean'){
                             this.config[key] = values[key];
                         }
+                        break;
                     case "closeIn":
                         if(typeof values[key] === 'number' && values[key]>999){
                             this.config[key] = values[key];
                         }
+                        break;
                     case "autoClose":
                         if(typeof values[key] === 'boolean'){
                             this.config[key] = values[key];
                         }
+                        break;
                     case "noIcon":
                         if(typeof values[key] === 'boolean'){
                             this.config[key] = values[key];
                         }
+                        break;
                     case "type":
                         this.config[key] = values[key];
+                        break;
                     case "iconType":
                         this.config[key] = values[key];
-                    case "zIndex":
-                        if(typeof values[key] === 'number'){
-                            this.config[key] = values[key];
+                        break;
+                    case "cssOverrides":
+                        const overrides = values[key];
+                        for(const key2 of Object.keys(overrides)){
+                            switch(key2){
+                                case "zIndex":
+                                    if(typeof overrides[key2] === 'number'){
+                                        this.config["cssOverrides"][key2] = overrides[key2];
+                                    }
+                                    break;
+                                case "borderRadius":
+                                    this.config["cssOverrides"][key2] = overrides[key2];
+                                    break;
+                                default:
+                                    //none
+                            }
                         }
+                        break;
                     default:
                         //none
                 }

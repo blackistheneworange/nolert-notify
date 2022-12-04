@@ -3,34 +3,15 @@ import {nolertSetIcon,nolertSetPosition,nolertSetCloseButton,nolertRestructureAl
 let isNolertCSSLoaded = false;
 
 const className="nolert-custom";
+const contentClassName="nolert-content-custom";
 const responsiveClassName="nolert-custom-mobile";
-const nolertAlertSectionId = "nolert-alert-section";
+const nolertNotifySectionId = "nolert-notify-section";
 
 const nolertActiveElements = {};
 let isCreatingNolertAlert = false;
 let nolertIdIncrementor=1;
 
-// const nolertConfig = {
-//     display:"solo"
-// }
-
-// export function nolertSetConfig(values){
-//     if(typeof values === "object"){
-//         for(const key of Object.keys(values)){
-//             switch(key){
-//                 case "display":
-//                     if(values[key] === "solo" || values[key] === "stack"){
-//                         nolertConfig[key] = values[key];
-//                     }
-//                     break;
-//                 default:
-//                     //none
-//             }
-//         }
-//     }
-// }
-
-export function trigger({message, type, position,closeIn, maxWidth, autoClose, closeButton, zIndex, iconType, noIcon, display}){
+export function trigger({message, type, position,closeIn, maxWidth, autoClose, closeButton, cssOverrides, iconType, noIcon, display}){
 
     // if(!isNolertCSSLoaded){
     //     nolertLoadCSS();
@@ -55,7 +36,7 @@ export function trigger({message, type, position,closeIn, maxWidth, autoClose, c
 
         nolertAddToActiveElements(id, position, display);
         
-        const containerEl = nolertCreateAlertElement({id, message, position, type, closeIn, maxWidth, closeButton, zIndex, iconType, noIcon});
+        const containerEl = nolertCreateAlertElement({id, message, position, type, closeIn, maxWidth, closeButton, cssOverrides, iconType, noIcon});
         nolertAddToAlertSection(containerEl, id);
     }
     catch(err){
@@ -66,12 +47,12 @@ export function trigger({message, type, position,closeIn, maxWidth, autoClose, c
     }
 }
 
-function nolertCreateAlertElement({id, message, position, type, closeIn, maxWidth, closeButton, zIndex, iconType, noIcon}){
+function nolertCreateAlertElement({id, message, position, type, closeIn, maxWidth, closeButton, cssOverrides, iconType, noIcon}){
     const containerEl = document.createElement("div");
     containerEl.setAttribute("id",id);
     containerEl.classList.add(className);
     containerEl.classList.add(responsiveClassName);
-    containerEl.style.zIndex = zIndex;
+    // containerEl.style.zIndex = zIndex;
 
     if(maxWidth){
         containerEl.style.maxWidth=maxWidth;
@@ -82,6 +63,13 @@ function nolertCreateAlertElement({id, message, position, type, closeIn, maxWidt
     const alertEl = document.createElement("div");
     alertEl.setAttribute("role","alert");
     alertEl.classList.add(type);
+    
+    for(const cssOverridesKey of Object.keys(cssOverrides)){
+        alertEl.style[cssOverridesKey] = cssOverrides[cssOverridesKey];
+    }
+    
+    const alertContentEl = document.createElement("div");
+    alertContentEl.classList.add(contentClassName);
 
     const svgIconContainerEl = document.createElement("div");
     svgIconContainerEl.classList.add("nolert-svg-icon-container");
@@ -92,8 +80,10 @@ function nolertCreateAlertElement({id, message, position, type, closeIn, maxWidt
     // messageEl.textContent = message;
     messageEl.innerHTML = message;
 
-    alertEl.appendChild(svgIconContainerEl);
-    alertEl.appendChild(messageEl);
+    alertContentEl.appendChild(svgIconContainerEl);
+    alertContentEl.appendChild(messageEl);
+
+    alertEl.appendChild(alertContentEl);
 
     if(closeButton) nolertSetCloseButton(alertEl, id, nolertActiveElements, position);
 
@@ -103,11 +93,11 @@ function nolertCreateAlertElement({id, message, position, type, closeIn, maxWidt
 }
 
 function nolertAddToAlertSection(containerEl){
-    const alertSection = document.getElementById(nolertAlertSectionId);
+    const alertSection = document.getElementById(nolertNotifySectionId);
 
     if(!alertSection){
         const alertSectionEl = document.createElement("div");
-        alertSectionEl.setAttribute("id", nolertAlertSectionId);
+        alertSectionEl.setAttribute("id", nolertNotifySectionId);
         alertSectionEl.appendChild(containerEl);
         document.body.appendChild(alertSectionEl);
     }

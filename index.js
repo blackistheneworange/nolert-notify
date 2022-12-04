@@ -1,3 +1,9 @@
-const NolertNotify = require("./src/js/index.js");
+import NolertNotify from "./src/js/index.js";
 
-export default NolertNotify;
+export default (
+    ("default" in NolertNotify) 
+    ? 
+        NolertNotify.default 
+    : 
+        NolertNotify
+);
