@@ -1,7 +1,7 @@
 {
   "name": "@nolert/notify",
   "version": "1.0.0",
-  "description": "",
+  "description": "A lightweight util library for creating notifications for the web developed using vanilla Javascript and plain CSS",
   "main": "index.js",
   "scripts": {
     "gulp": "gulp"

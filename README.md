@@ -1,0 +1,1 @@
+A lightweight util library for creating notifications for the web developed using vanilla Javascript and plain CSS
