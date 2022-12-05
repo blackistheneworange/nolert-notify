@@ -12,10 +12,7 @@
     "url": "https://github.com/blackistheneworange/nolert-notify.git"
   },
   "keywords": [
-    "promise",
-    "async",
-    "UnhandledPromiseRejectionWarning",
-    "PromiseRejectionHandledWarning"
+    "alert","alerts","nolert","notification","notifications","utility","notify"
   ],
   "publishConfig": {
     "access": "public"
