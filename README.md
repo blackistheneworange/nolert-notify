@@ -2,7 +2,9 @@
 
 A lightweight utility library for creating notifications for the web developed using vanilla Javascript and plain CSS.
 
-## Installation
+## Installation & Setup
+
+[**View the live demo**](https://blackistheneworange.github.io/nolert-notify/)
 
 Install the plugin from npm:
 
@@ -10,7 +12,7 @@ Install the plugin from npm:
 npm install @nolert/notify
 ```
 
-Import the css file in your root:
+Import the css file in your root file:
 ```js
 import "@nolert/notify/dist/style.min.css";
 ```
@@ -21,7 +23,7 @@ Then import the plugin in your js file:
 import notify from "@nolert/notify";
 ```
 
-If you want to import it directly in your html file, add the below script tag in your html filel:
+If you want to import it directly in your html file, add the below script tag in your html file:
 
 ```html
 <script src="@nolert/notify/dist/script.min.js"></script>

@@ -1,16 +1,22 @@
 {
   "name": "@nolert/notify",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "A lightweight util library for creating notifications for the web developed using vanilla Javascript and plain CSS",
   "main": "index.js",
   "scripts": {
     "gulp": "gulp"
   },
-  "author": "Hariharan Radhakrishnan",
+  "author": "Hariharan Radhakrishnan <hharan87@gmail.com> (https://hariharanr.com)",
   "repository": {
     "type": "git",
     "url": "https://github.com/blackistheneworange/nolert-notify.git"
   },
+  "keywords": [
+    "promise",
+    "async",
+    "UnhandledPromiseRejectionWarning",
+    "PromiseRejectionHandledWarning"
+  ],
   "publishConfig": {
     "access": "public"
   },
